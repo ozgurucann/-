@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('kelimeFormu');
     const kelimeListesi = document.getElementById('kelimeListesi');
 
-    // Başlangıçta, tarayıcının yerel depolamasındaki (localStorage) kelimeleri yükle.
     let ogrenilenKelimeler = loadKelimeler();
 
     form.addEventListener('submit', function(e) {
@@ -10,45 +9,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dil = document.getElementById('dil').value;
         const kelime = document.getElementById('kelime').value.trim();
+        const anlam = document.getElementById('anlam').value.trim(); 
 
-        if (dil && kelime) {
+        if (dil && kelime && anlam) { 
             const yeniKelime = {
                 dil: dil,
-                kelime: kelime
+                kelime: kelime,
+                anlam: anlam 
             };
 
-            // Yeni kelimeyi listeye ekle
             ogrenilenKelimeler.push(yeniKelime);
-
-            // 1. Kelimeleri kalıcı olarak kaydet
             saveKelimeler(ogrenilenKelimeler);
-
-            // 2. Listeyi ekranda güncelle
             renderKelimeler(ogrenilenKelimeler);
-
-            // Formu temizle
             form.reset();
         } else {
-            alert('Lütfen hem dili hem de kelimeyi giriniz.');
+            // Korece Uyarı Mesajı
+            alert('언어, 단어, 그리고 터키어 의미를 입력해주세요. (Eon-eo, Dan-eo, Geurigo Teoki-eo Euimireul Ipryeokhaejuseyo.)');
         }
     });
 
-    // --- KALICILIK FONKSİYONLARI ---
+    // --- KALICILIK FONKSİYONLARI (DEĞİŞMEDİ) ---
 
-    // localStorage'dan veriyi yükle
     function loadKelimeler() {
         const kelimelerJSON = localStorage.getItem('kelimeTakipListesi');
-        // JSON formatındaki metni JavaScript listesine çevirir, yoksa boş liste döner
         return kelimelerJSON ? JSON.parse(kelimelerJSON) : [];
     }
 
-    // localStorage'a veriyi kaydet
     function saveKelimeler(kelimeler) {
-        // JavaScript listesini JSON metnine çevirir ve kaydeder
         localStorage.setItem('kelimeTakipListesi', JSON.stringify(kelimeler));
     }
 
-    // --- EKRAN GÖRÜNTÜLEME FONKSİYONU ---
+    // --- EKRAN GÖRÜNTÜLEME FONKSİYONU (DEĞİŞMEDİ) ---
 
     function renderKelimeler(kelimeler) {
         kelimeListesi.innerHTML = '';
@@ -58,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
             kart.classList.add('kelime-kart');
             
             kart.innerHTML = `
-                <strong>${item.kelime}</strong>
-                <span>(${item.dil.charAt(0).toUpperCase() + item.dil.slice(1)})</span>
+                <div class="foreign-word">${item.kelime}</div>
+                <div class="turkish-meaning">(${item.anlam})</div> 
+                <span class="language-tag">${item.dil.charAt(0).toUpperCase() + item.dil.slice(1)}</span>
             `;
             kelimeListesi.appendChild(kart);
         });
     }
 
-    // İlk yüklemede kelimeleri ekranda göster
     renderKelimeler(ogrenilenKelimeler);
 });
