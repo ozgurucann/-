@@ -1,35 +1,28 @@
 <!DOCTYPE html>
-<html lang="tr">
-<head>
+<html lang="ko"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelime Öğrenme Takibi</title>
-    <link rel="stylesheet" href="style.css">
+    <title>단어 학습 추적 (Dan-eo Haks-seup Chu-jeok)</title> <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>📚 Öğrenilen Kelimeleri Paylaş</h1>
-
-    <form id="kelimeFormu">
-        <label for="dil">Hangi Dil?</label>
-        <select id="dil" required>
-            <option value="">Seçiniz</option>
-            <option value="ingilizce">İngilizce</option>
-            <option value="ispanyolca">İspanyolca</option>
-            <option value="almanca">Almanca</option>
-            <option option="fransizca">Fransızca</option>
-            <option value="diger">Diğer</option>
+    <h1>📚 배운 단어 공유 (Bae-un Dan-eo Gong-yu)</h1> <form id="kelimeFormu">
+        <label for="dil">어떤 언어? (Eotteon Eon-eo?)</label> <select id="dil" required>
+            <option value="">선택 (Seon-taek)</option> <option value="ingilizce">영어 (Yeong-eo)</option>
+            <option value="ispanyolca">스페인어 (Seupein-eo)</option>
+            <option value="almanca">독일어 (Dogil-eo)</option>
+            <option option="fransizca">프랑스어 (Peurang-seu-eo)</option>
+            <option value="diger">기타 (Gita)</option>
         </select>
 
-        <label for="kelime">Öğrenilen Kelime:</label>
-        <input type="text" id="kelime" required>
+        <label for="kelime">배운 단어 (한국어/외국어): (Bae-un Dan-eo)</label> <input type="text" id="kelime" required>
 
-        <button type="submit">Ekle</button>
-    </form>
+        <label for="anlam">터키어 의미: (Teoki-eo Eui-mi)</label> <input type="text" id="anlam" required>
+
+        <button type="submit">추가 (Chu-ga)</button> </form>
 
     <hr>
 
-    <h2>Göz Atın 👀</h2>
-    <div id="kelimeListesi">
+    <h2>살펴보기 👀 (Salpyeo-bogi)</h2> <div id="kelimeListesi">
         </div>
 
     <script src="script.js"></script>
