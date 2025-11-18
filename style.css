@@ -1,20 +1,109 @@
-/* Bu kodun style.css dosyanızda zaten olması gerekir. */
+body {
+    background: linear-gradient(to right, #4CAF50, #2196F3); /* Yeşil (Türkiye) -> Mavi (Deniz/Gökyüzü/Kore) */
+    font-family: 'Arial', sans-serif;
+    color: white;
+    text-align: center;
+    overflow: hidden; /* Uçağın dışarı çıkabilmesi için */
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-.kelime-kart .foreign-word {
-    font-size: 1.4em; 
+.container {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+input[type="text"], button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.1em;
+}
+
+button {
+    background-color: #FFC107; /* Sarı */
+    cursor: pointer;
     font-weight: bold;
-    color: #2c3e50; 
+    color: #333;
+    transition: background-color 0.2s;
 }
 
-.kelime-kart .turkish-meaning {
-    margin-top: 5px;
-    font-style: italic;
-    color: #7f8c8d;
+button:hover {
+    background-color: #ff9800;
 }
 
-.kelime-kart .language-tag {
-    display: block;
-    font-size: 0.8em;
-    color: #c0392b; 
-    margin-top: 5px;
+/* --- UÇAK ANİMASYON STİLLERİ --- */
+
+.animation-area {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 50px;
+}
+
+.airplane {
+    /* Uçak Görüntüsü (Basit bir şekil ile temsil edelim) */
+    width: 80px;
+    height: 80px;
+    background-color: #ccc; 
+    border-radius: 50%; /* Yuvarlak gövde */
+    position: absolute;
+    left: -100px; /* Ekranın solundan başlat (Türkiye) */
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    
+    /* Uçak kanat ve burun simülasyonu */
+    border-top: 10px solid #eee;
+    border-left: 20px solid #eee;
+    clip-path: polygon(0% 50%, 100% 0%, 100% 100%, 0% 50%); /* Basit üçgen uçak şekli */
+    background-color: #fff;
+}
+
+.word-display {
+    position: absolute;
+    width: 200px; /* Kelimenin sığması için */
+    top: -30px; /* Uçağın üstüne yerleştir */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFC107; /* Sarı renkte yaz */
+    font-weight: 900;
+    font-size: 1.5em;
+    white-space: nowrap;
+}
+
+.flying {
+    /* Uçuş animasyonu: Sol (-100px) konumundan sağa (ekranın dışına) uçur */
+    transform: translateX(calc(100vw + 100px));
+}
+
+/* Türkiye ve Kore Sınırları için Gösterge */
+.animation-area::before {
+    content: "🇹🇷 Türkiye";
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    font-weight: bold;
+    color: #eee;
+}
+
+.animation-area::after {
+    content: "🇰🇷 Kore";
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-weight: bold;
+    color: #eee;
 }
