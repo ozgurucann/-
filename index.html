@@ -1,51 +1,25 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelime Uçağı</title>
-    <link rel="stylesheet" href="ucak.css">
-</head>
-<body>
-    <div class="container">
-        <h1>🇹🇷✈️🇰🇷 Kelime Uçağı</h1>
-        <p>Uçurmak istediğiniz kelimeyi yazın, Türkiye'den Kore'ye doğru yola çıksın!</p>
+<script>
+    document.getElementById('wordForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const word = document.getElementById('kelime').value.toUpperCase();
+        const airplane = document.getElementById('airplane');
+        const wordDisplay = document.getElementById('wordDisplay');
 
-        <form id="wordForm">
-            <label for="kelime">Uçaktaki Kelime:</label>
-            <input type="text" id="kelime" required maxlength="15" placeholder="Maksimum 15 karakter">
-            <button type="submit">Uçağı Uçur!</button>
-        </form>
-    </div>
+        // 1. Kelimeyi uçağın üzerine yaz
+        wordDisplay.textContent = word;
 
-    <div id="animationArea" class="animation-area">
-        <div id="airplane" class="airplane">
-            <div id="wordDisplay" class="word-display"></div>
-        </div>
-    </div>
+        // 2. Önce uçuş sınıfını ve animasyonu SIFIRLA (Çok önemli!)
+        airplane.classList.remove('flying');
+        airplane.style.transition = 'none';
+        airplane.style.transform = 'translateX(-100px)'; // Başlangıç konumuna çek
 
-    <script>
-        document.getElementById('wordForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const word = document.getElementById('kelime').value.toUpperCase();
-            const airplane = document.getElementById('airplane');
-            const wordDisplay = document.getElementById('wordDisplay');
-
-            // 1. Kelimeyi uçağın üzerine yaz
-            wordDisplay.textContent = word;
-
-            // 2. Önce uçağı başlangıç konumuna (Türkiye) getir
-            airplane.classList.remove('flying');
-            airplane.style.transition = 'none';
-            airplane.style.transform = 'translateX(0)';
-
-            // 3. Küçük bir gecikmeyle uçuş animasyonunu başlat
-            // Bu, animasyonun sıfırlanıp tekrar başlaması için önemlidir.
-            setTimeout(() => {
+        // 3. Tarayıcıya bu sıfırlamayı işlemesi için bir an ver (requestAnimationFrame)
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                // 4. Şimdi animasyon ayarlarını geri getir ve uçuşu BAŞLAT
                 airplane.style.transition = 'transform 8s linear'; // 8 saniye boyunca uç
                 airplane.classList.add('flying');
-            }, 50); 
-        });
-    </script>
-</body>
-</html>
+            });
+        }); 
+    });
+</script>
