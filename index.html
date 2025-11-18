@@ -1,30 +1,51 @@
 <!DOCTYPE html>
-<html lang="ko"> <head>
+<html lang="tr">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>단어 학습 추적 (Dan-eo Haks-seup Chu-jeok)</title> <link rel="stylesheet" href="style.css">
+    <title>Kelime Uçağı</title>
+    <link rel="stylesheet" href="ucak.css">
 </head>
 <body>
-    <h1>📚 배운 단어 공유 (Bae-un Dan-eo Gong-yu)</h1> <form id="kelimeFormu">
-        <label for="dil">어떤 언어? (Eotteon Eon-eo?)</label> <select id="dil" required>
-            <option value="">선택 (Seon-taek)</option> <option value="ingilizce">영어 (Yeong-eo)</option>
-            <option value="ispanyolca">스페인어 (Seupein-eo)</option>
-            <option value="almanca">독일어 (Dogil-eo)</option>
-            <option option="fransizca">프랑스어 (Peurang-seu-eo)</option>
-            <option value="diger">기타 (Gita)</option>
-        </select>
+    <div class="container">
+        <h1>🇹🇷✈️🇰🇷 Kelime Uçağı</h1>
+        <p>Uçurmak istediğiniz kelimeyi yazın, Türkiye'den Kore'ye doğru yola çıksın!</p>
 
-        <label for="kelime">배운 단어 (한국어/외국어): (Bae-un Dan-eo)</label> <input type="text" id="kelime" required>
+        <form id="wordForm">
+            <label for="kelime">Uçaktaki Kelime:</label>
+            <input type="text" id="kelime" required maxlength="15" placeholder="Maksimum 15 karakter">
+            <button type="submit">Uçağı Uçur!</button>
+        </form>
+    </div>
 
-        <label for="anlam">터키어 의미: (Teoki-eo Eui-mi)</label> <input type="text" id="anlam" required>
-
-        <button type="submit">추가 (Chu-ga)</button> </form>
-
-    <hr>
-
-    <h2>살펴보기 👀 (Salpyeo-bogi)</h2> <div id="kelimeListesi">
+    <div id="animationArea" class="animation-area">
+        <div id="airplane" class="airplane">
+            <div id="wordDisplay" class="word-display"></div>
         </div>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('wordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const word = document.getElementById('kelime').value.toUpperCase();
+            const airplane = document.getElementById('airplane');
+            const wordDisplay = document.getElementById('wordDisplay');
+
+            // 1. Kelimeyi uçağın üzerine yaz
+            wordDisplay.textContent = word;
+
+            // 2. Önce uçağı başlangıç konumuna (Türkiye) getir
+            airplane.classList.remove('flying');
+            airplane.style.transition = 'none';
+            airplane.style.transform = 'translateX(0)';
+
+            // 3. Küçük bir gecikmeyle uçuş animasyonunu başlat
+            // Bu, animasyonun sıfırlanıp tekrar başlaması için önemlidir.
+            setTimeout(() => {
+                airplane.style.transition = 'transform 8s linear'; // 8 saniye boyunca uç
+                airplane.classList.add('flying');
+            }, 50); 
+        });
+    </script>
 </body>
 </html>
