@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelime Öğrenme Takibi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>📚 Öğrenilen Kelimeleri Paylaş</h1>
+
+    <form id="kelimeFormu">
+        <label for="dil">Hangi Dil?</label>
+        <select id="dil" required>
+            <option value="">Seçiniz</option>
+            <option value="ingilizce">İngilizce</option>
+            <option value="ispanyolca">İspanyolca</option>
+            <option value="almanca">Almanca</option>
+            <option option="fransizca">Fransızca</option>
+            <option value="diger">Diğer</option>
+        </select>
+
+        <label for="kelime">Öğrenilen Kelime:</label>
+        <input type="text" id="kelime" required>
+
+        <button type="submit">Ekle</button>
+    </form>
+
+    <hr>
+
+    <h2>Göz Atın 👀</h2>
+    <div id="kelimeListesi">
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
